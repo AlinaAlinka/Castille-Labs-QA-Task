@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "e8b6ad51-7b22-4481-9505-53fac912bcca",
+		"name": "CastilleLabs_QA_Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API_Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c82023ca-b4ea-4e2b-ad01-ab01146425f2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"userId\", \"id\", \"title\", \"completed\");",
+							"});",
+							"",
+							"pm.test(\"node called title exists\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var title = jsonData.title;  ",
+							"    pm.expect(title).to.eql(\"delectus aut autem\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/todos/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"todos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
